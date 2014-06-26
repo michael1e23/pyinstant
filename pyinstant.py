@@ -32,7 +32,6 @@ def run(_level=0):
     global is_host
     print("run(), ishost =",is_host)
 
-
     if not is_host:
         if break_child:
             import wingdbstub
@@ -53,11 +52,12 @@ def run(_level=0):
             read_pipe.read()
             read_pipe.close()
         else:
-            s = raw_input('\nMIC:>')
+            print("\n   type h-<enter> for help")
+            s = raw_input('MIC:> ')
             s = s.strip()
 
         if s == 'k':
-            print('killing old process: ', old_pid )
+            print('killing old process: {0}'.format(old_pid) )
             os.kill(old_pid,signal.SIGTERM)
             continue
         elif s in ('s','sb'):
@@ -90,7 +90,7 @@ def run(_level=0):
 
             elif pid > 0:
                 old_pid = pid
-                time.sleep(.2)
+                #time.sleep(.2)
                 pass
 
 
