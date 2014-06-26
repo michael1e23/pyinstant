@@ -34,8 +34,8 @@ Example::
 
   pyinstant.run()
 
-  while True:
-      print('working proc' + os.getpid())
+  for i in range(3):
+      print('child process at work: ' + os.getpid() + ' ' + str(i))
       time.sleep(1)
 
 
