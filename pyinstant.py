@@ -41,12 +41,13 @@ class Launcher(object):
 
     def kill(self):
         pids = self.child_pids
-        print('killing old processes: {0}'.format(pids) )
         for pid in pids:
             os.kill(
                 pid,
                 signal.SIGTERM
             )
+
+        self.child_pids = []
 
 
     def run(self,_level=0):
@@ -73,43 +74,54 @@ class Launcher(object):
 
             if com == '':
                 continue
+
             elif 'kill'.startswith(com):
+                print( 'killing old processes: {0}'.format(self.child_pids) )
                 self.kill()
                 continue
+
             elif 'help'.startswith(com):
                 self.show_help()
-            elif s in ('s','sb'):
-                logger.debug('spawning child')
-                #print('wait for short');time.sleep(1)
-                if old_pid is not None:
-                    print('killing old process: ', old_pid )
-                    os.kill(old_pid,signal.SIGTERM)
-                pid = os.fork()
-                if pid == 0:
-                    is_host = False
-                    if s == 'sb':
-                        break_child = True
-                    stack = a = inspect.stack()
-                    print('child stack')
-                    for i in range(len(stack)):
-                        print(i,stack[i][1])
 
-                    a = stack[_level+1]
-                    fname = a[1]
-                    frame = a[0]
-                    globs = frame.f_globals
-                    locs  = frame.f_locals
-                    print( 'executing file:', fname )
-                    execfile(
-                        fname,
-                        globs,
-                        locs,
-                    )
+            elif 'start'.startswith(com):
+                logging.debug('killing old processes')
+                if old_pid is not None:
+                    logging.debug('killing old process: ', old_pid )
+                    os.kill(old_pid,signal.SIGTERM)
+
+                logging.debug('spawning new child')
+                self.launch_child(_level=_level+1)
+
 
                 elif pid > 0:
                     old_pid = pid
 
 
+
+    def launch_child(self,_level):
+        pid = os.fork()
+        if pid == 0:
+            is_host = False
+
+            #if s == 'sb':
+            #    break_child = True
+
+            stack = a = inspect.stack()
+            print('child stack')
+            for i in range(len(stack)):
+                print(i,stack[i][1])
+
+            a = stack[_level+1]
+            fname = a[1]
+            frame = a[0]
+            globs = frame.f_globals
+            locs  = frame.f_locals
+            print( 'executing file:', fname )
+            execfile(
+                fname,
+                globs,
+                locs,
+            )
 
 
 
