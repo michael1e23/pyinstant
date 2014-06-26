@@ -1,14 +1,19 @@
-pyinstant
+pyinstant - Instantly start python script by skipping initialization procedures
 ======
 
-**Instantly start python script by skipping initialization procedures**
-
-
-
-Usage
------
-
 ::
+
+  import pyinstant
+
+  if pyinstant.is_host:
+      # my slow initialization
+
+  pyinstant.run()
+
+  # main code
+
+
+example::
 
   import pyinstant
 
