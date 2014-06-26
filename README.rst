@@ -5,9 +5,11 @@ pyinstant
 
 Your initialization will be run just once.
 After you can fork children that are already initialized.
-You can even modify the scripts main code without even restarting
-the script.
-It will be dynamically loaded.
+You can even modify the scripts main code without
+needing to restart your script.
+It will be dynamically reloaded and
+no repeated initialization will be executed.
+Only restart your script if initialization code changed.
 
 ::
 
