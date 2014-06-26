@@ -9,6 +9,7 @@ Usage
 -----
 
 Usage::
+
   import pyinstant
 
   if pyinstant.is_host:
