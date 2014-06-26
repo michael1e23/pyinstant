@@ -60,6 +60,7 @@ dostuff.py::
   print('exiting')
 
 When you call it::
+
   > python dostuff.py
   slow initialization
   process at work: 10922 0
@@ -83,6 +84,7 @@ Then you instantify it to::
 
 
 Then you run the new script::
+
   > python dostuff.py
   slow initialization
 
