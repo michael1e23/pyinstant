@@ -60,7 +60,7 @@ class Launcher(object):
         global is_host
         global pipename
 
-        logging.debug( "run(), ishost =", is_host )
+        #logging.debug( "run(), ishost =", is_host )
 
         if not is_host:
             if debug_child:
@@ -144,7 +144,7 @@ class Launcher(object):
             globs = frame.f_globals
             locs  = frame.f_locals
 
-            logging.debug( 'executing file:', fname )
+            logging.debug( 'executing file: ' + fname )
 
             print(
                 '\n\n   *** new child spawned{0} ***'.format(
