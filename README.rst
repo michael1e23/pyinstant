@@ -70,13 +70,13 @@ When you call it::
 
 (Step 1) Then you instantify it to::
 
-  import pyinstant      # <- line 1 of 3
-  if pyinstant.is_host: # <- line 2 of 3
+  import pyinstant                    # <- line 1 of 3
+  if pyinstant.is_host:               # <- line 2 of 3
       import time,os
       print('slow initialization')
       time.sleep(3)
 
-  pyinstant.run() # <- line 3 of 3
+  pyinstant.run()                     # <- line 3 of 3
 
   for i in range(3):
       print('process at work: {0} {1}'.format(os.getpid(),i))
