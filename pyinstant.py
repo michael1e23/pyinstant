@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-"""
-	author : 'Michael Isik'
-"""
+__author__ = "Michael Isik"
+
 
 import os
 import inspect
@@ -23,11 +22,13 @@ class Launcher(object):
     def show_help(self):
         help_string = """
     s : start new process (kills already started ones)
-    d : debug new process (kills already started ones)
     k : kill started processes
     v : toggle verbosity
     h : show this help string
     q : quit
+    d : (experimental) debug new process
+        kills already started ones
+        currently only wingide is supported
 """
         print(help_string)
 
