@@ -7,7 +7,7 @@ pyinstant
 :Name: pyinstant
 :Author: Michael Isik
 :Email: isikmichael@gmx.net
-:URL: https://github.com/mrkrd/pyinstant
+:URL: https://github.com/michael1e23/pyinstant
 :License: GNU General Public License v3 or later (GPLv3+)
 
 
