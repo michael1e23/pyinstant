@@ -15,7 +15,7 @@ pyinstant
   # main code
 
 
-example::
+Example::
 
   import pyinstant
 
@@ -37,7 +37,8 @@ Installation
 
 Quick install::
 
-   pip install pyinstant
+  cd /path/to/myscript
+  wget https://raw.githubusercontent.com/michael1e23/pyinstant/master/pyinstant.py
 
 
 Developer::
