@@ -68,7 +68,8 @@ When you call it::
   process at work: 10922 2
   exiting
 
-Then you instantify it to::
+(Step 1) Then you instantify it to::
+
   import pyinstant      # <- line 1 of 3
   if pyinstant.is_host: # <- line 2 of 3
       import time,os
@@ -83,7 +84,7 @@ Then you instantify it to::
   print('exiting')
 
 
-Then you run the new script::
+(Step 2) Then you run the new script::
 
   > python dostuff.py
   slow initialization
