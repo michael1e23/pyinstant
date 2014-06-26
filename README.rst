@@ -29,14 +29,35 @@ Example::
 
   if pyinstant.is_host:
       import time,os
-      print('my slow initialization')
+      print('this is the host session process, pid={0}'.format(os.getpid()))
+      print('slow initialization')
       time.sleep(3)
 
+  # will start a host loop that waits for user input
   pyinstant.run()
 
+  # only forked children will come this far
   for i in range(3):
       print('child process at work: ' + os.getpid() + ' ' + str(i))
       time.sleep(1)
+
+
+
+Workflow
+------------
+
+First you have a bare script.
+
+dostuff.py::
+
+  import time,os
+  print('slow initialization')
+  time.sleep(3)
+
+  for i in range(3):
+      print('process at work: ' + os.getpid() + ' ' + str(i))
+      time.sleep(1)
+
 
 
 
