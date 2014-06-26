@@ -1,5 +1,7 @@
-pyinstant - Instantly start python script by skipping initialization procedures
+pyinstant
 ======
+
+***Instantly start python script by skipping initialization procedures***
 
 ::
 
