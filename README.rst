@@ -1,9 +1,9 @@
 pyinstant
 ======
 
-**Instantly start python script by skipping initialization procedures**
+**Instantly start a python script by skipping initialization procedures**
 
-**You need 3 lines of code**
+**You need 3 lines of code!**
 
 Your initialization will be run just once.
 After that, you can fork children that are already initialized.
