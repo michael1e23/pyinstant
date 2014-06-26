@@ -33,6 +33,7 @@ Example::
       import time,os
       print('this is the host session process, pid={0}'.format(os.getpid()))
       print('slow initialization')
+      SOMEOBJECT = { 'A': 3 }
       time.sleep(3)
 
   # will start a host loop that waits for user input
@@ -41,6 +42,7 @@ Example::
   # only forked children will come this far
   for i in range(3):
       print('child process at work: {0} {1}'.format(os.getpid(),i)
+      print( SOMEOBJECT )
       time.sleep(1)
 
 
