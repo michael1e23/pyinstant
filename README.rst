@@ -3,7 +3,7 @@ pyinstant
 
 **Instantly start a python script by skipping initialization procedures**
 
-**You need 2 lines of code!**
+**You need 3 lines of code!**
 
 Your initialization will be run just once.
 After that, you can fork children that are already initialized.
@@ -17,8 +17,10 @@ Only restart your script if initialization code changed.
 
   import pyinstant
 
-  with pyinstant.initcode:
+  if pyinstant.is_host:
       # my slow initialization
+
+  pyinstant.run()
 
   # main code
 
@@ -27,12 +29,15 @@ Example::
 
   import pyinstant
 
-  with pyinstant.initcode:
+  if pyinstant.is_host:
       import time,os
       print('this is the host session process, pid={0}'.format(os.getpid()))
       print('slow initialization')
       SOMEOBJECT = { 'A': 3 }
       time.sleep(3)
+
+  # will start a host loop that waits for user input
+  pyinstant.run()
 
   # only forked children will come this far
   for i in range(3):
@@ -69,12 +74,13 @@ When you call it::
 
 (Step 1) Then you instantify it to::
 
-  import pyinstant                    # <- line 1 of 2
-  with pyinstant.initcode:            # <- line 2 of 2
+  import pyinstant                    # <- line 1 of 3
+  if pyinstant.is_host:               # <- line 2 of 3
       import time,os
       print('slow initialization')
       time.sleep(3)
 
+  pyinstant.run()                     # <- line 3 of 3
 
   for i in range(3):
       print('process at work: {0} {1}'.format(os.getpid(),i))
@@ -130,10 +136,12 @@ When you call it::
 ::
 
   import pyinstant
-  with pyinstant.initcode:
+  if pyinstant.is_host:
       import time,os
       print('slow initialization')
       time.sleep(3)
+
+  pyinstant.run()
 
   for i in range(3):
       print('my changed line')        # the changed line
