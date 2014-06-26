@@ -167,6 +167,22 @@ def run():
     l.run(_level=1)
 
 
+class _initcode_class:
+    def __enter__(self):
+        return None
+
+    def __exit__(self, type, value, traceback):
+        l = Launcher()
+        l.run(_level=1)
+
+        return False
+
+    def __call__(self):
+        return self
+
+
+initcode = _initcode_class()
+
 
 #def trigger(condition,_level=0):
     #if condition:
