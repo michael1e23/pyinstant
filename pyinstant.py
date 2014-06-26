@@ -14,6 +14,21 @@ is_host = True
 break_child = False
 pipename = 'quickstarterpipe'
 
+class Launcher(object):
+    def __init__(self):
+        self.child_pids = []
+
+    def run(self,_level=0):
+        print(9)
+
+
+
+
+def run():
+    l = Launcher()
+    l.run(_level=1)
+
+
 def trigger(condition,_level=0):
     if condition:
         global pipename
@@ -22,7 +37,6 @@ def trigger(condition,_level=0):
         exit(0)
     else:
         run(_level=_level+1)
-
 
 
 
@@ -90,8 +104,6 @@ def run(_level=0):
 
             elif pid > 0:
                 old_pid = pid
-                #time.sleep(.2)
-                pass
 
 
 
