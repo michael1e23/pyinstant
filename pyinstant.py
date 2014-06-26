@@ -169,6 +169,7 @@ def run():
 
 class _initcode_class:
     def __enter__(self):
+        raise Exception('skipit')
         return None
 
     def __exit__(self, type, value, traceback):
