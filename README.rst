@@ -4,11 +4,24 @@ pyinstant
 *Instantly start python script by skipping initialization procedures*
 
 
-:Name: pyinstant
-:Author: Michael Isik
-:Email: isikmichael@gmx.net
-:URL: https://github.com/michael1e23/pyinstant
-:License: GNU General Public License v3 or later (GPLv3+)
+
+Usage
+-----
+
+Usage::
+  import pyinstant
+
+  if pyinstant.is_host:
+      import time,os
+      print('my slow initialization')
+      time.sleep(3)
+
+  pyinstant.run()
+
+  while True:
+      print('working proc' + os.getpid())
+      time.sleep(1)
+
 
 
 Installation
@@ -32,3 +45,11 @@ Administrator::
 User::
 
   python setup.py install --user
+
+
+:Name: pyinstant
+:Author: Michael Isik
+:Email: isikmichael@gmx.net
+:URL: https://github.com/michael1e23/pyinstant
+:License: GNU General Public License v3 or later (GPLv3+)
+
