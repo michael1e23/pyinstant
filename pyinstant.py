@@ -50,7 +50,7 @@ class Launcher(object):
         self.child_pids = []
 
 
-    def run(self,_level=0):
+    def run( self, _level ):
         global pipename
         global break_child
         global is_host
@@ -62,10 +62,11 @@ class Launcher(object):
             return
 
 
-        try:
-            os.mkfifo(pipename)
-        except OSError:
-            pass
+        if False:
+            try:
+                os.mkfifo(pipename)
+            except OSError:
+                pass
 
 
         old_pid = None
@@ -93,10 +94,6 @@ class Launcher(object):
                 self.launch_child(_level=_level+1)
 
 
-                elif pid > 0:
-                    old_pid = pid
-
-
 
     def launch_child(self,_level):
         pid = os.fork()
@@ -118,15 +115,15 @@ class Launcher(object):
             globs = frame.f_globals
             locs  = frame.f_locals
 
-            logger.debug( 'executing file:', fname )
+            logging.debug( 'executing file:', fname )
 
             execfile(
                 fname,
                 globs,
                 locs,
             )
-
-
+        elif pid > 0:
+            self.child_pids.append(pid)
 
 
 
@@ -134,6 +131,7 @@ class Launcher(object):
 def run():
     l = Launcher()
     l.run(_level=1)
+
 
 
 #def trigger(condition,_level=0):
