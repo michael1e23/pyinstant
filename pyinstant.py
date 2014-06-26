@@ -106,17 +106,20 @@ class Launcher(object):
             #if s == 'sb':
             #    break_child = True
 
-            stack = a = inspect.stack()
-            print('child stack')
-            for i in range(len(stack)):
-                print(i,stack[i][1])
+            stack = inspect.stack()
 
-            a = stack[_level+1]
-            fname = a[1]
-            frame = a[0]
+            #print('child stack')
+            #for i in range(len(stack)):
+            #    print(i,stack[i][1])
+
+            rec = stack[_level+1]
+            fname = rec[1]
+            frame = rec[0]
             globs = frame.f_globals
             locs  = frame.f_locals
-            print( 'executing file:', fname )
+
+            logger.debug( 'executing file:', fname )
+
             execfile(
                 fname,
                 globs,
@@ -133,14 +136,14 @@ def run():
     l.run(_level=1)
 
 
-def trigger(condition,_level=0):
-    if condition:
-        global pipename
-        write_pipe = open(pipename, 'w')
-        write_pipe.write('\n')
-        exit(0)
-    else:
-        run(_level=_level+1)
+#def trigger(condition,_level=0):
+    #if condition:
+        #global pipename
+        #write_pipe = open(pipename, 'w')
+        #write_pipe.write('\n')
+        #exit(0)
+    #else:
+        #run(_level=_level+1)
 
 
 
