@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-	__author__ = 'Michael Isik'
+	author : 'Michael Isik'
 """
 
 from pprint import pprint
@@ -14,37 +14,37 @@ is_host = True
 break_child = False
 pipename = 'quickstarterpipe'
 
-def trigger(condition,level=0):
+def trigger(condition,_level=0):
     if condition:
         global pipename
         write_pipe = open(pipename, 'w')
         write_pipe.write('\n')
         exit(0)
     else:
-        run(level=level+1)
-    
-    
+        run(_level=_level+1)
 
 
-def run(level=0):
+
+
+def run(_level=0):
     global pipename
     global break_child
     global is_host
     print("run(), ishost =",is_host)
-    
-    
+
+
     if not is_host:
         if break_child:
             import wingdbstub
         return
-    
-        
+
+
     try:
         os.mkfifo(pipename)
-    except OSError:    
+    except OSError:
         pass
-    
-    
+
+
     old_pid = None
     while True:
         if False:
@@ -60,7 +60,7 @@ def run(level=0):
             print('killing old process: ', old_pid )
             os.kill(old_pid,signal.SIGTERM)
             continue
-        elif s in ('s','sb'):            
+        elif s in ('s','sb'):
             print('spawning child')
             #print('wait for short');time.sleep(1)
             if old_pid is not None:
@@ -75,8 +75,8 @@ def run(level=0):
                 print('child stack')
                 for i in range(len(stack)):
                     print(i,stack[i][1])
-                    
-                a = stack[level+1]
+
+                a = stack[_level+1]
                 fname = a[1]
                 frame = a[0]
                 globs = frame.f_globals
@@ -87,7 +87,7 @@ def run(level=0):
                     globs,
                     locs,
                 )
-            
+
             elif pid > 0:
                 old_pid = pid
                 time.sleep(.2)
@@ -96,5 +96,5 @@ def run(level=0):
 
 
 
-    
-        
+
+
