@@ -38,7 +38,7 @@ Example::
 
   # only forked children will come this far
   for i in range(3):
-      print('child process at work: ' + os.getpid() + ' ' + str(i))
+      print('child process at work: {0} {1}'.format(os.getpid(),i)
       time.sleep(1)
 
 
@@ -55,8 +55,85 @@ dostuff.py::
   time.sleep(3)
 
   for i in range(3):
-      print('process at work: ' + os.getpid() + ' ' + str(i))
+      print('process at work: {0} {1}'.format(os.getpid(),i))
       time.sleep(1)
+  print('exiting')
+
+When you call it::
+  > python dostuff.py
+  slow initialization
+  process at work: 10922 0
+  process at work: 10922 1
+  process at work: 10922 2
+  exiting
+
+Then you instantify it to::
+  import pyinstant      # <- line 1 of 3
+  if pyinstant.is_host: # <- line 2 of 3
+      import time,os
+      print('slow initialization')
+      time.sleep(3)
+
+  pyinstant.run() # <- line 3 of 3
+
+  for i in range(3):
+      print('process at work: {0} {1}'.format(os.getpid(),i))
+      time.sleep(1)
+  print('exiting')
+
+
+Then you run the new script::
+  > python dostuff.py
+  slow initialization
+
+  pyinstant (h for help) :> h
+
+      s : start new process (kills already started ones)
+      k : kill started processes
+      v : toggle verbosity
+      h : show this help string
+      q : quit
+      d : (experimental) debug new process
+          kills already started ones
+          currently only wingide is supported
+
+
+  pyinstant (h for help) :> s
+
+  pyinstant (h for help) :>
+
+     *** new child spawned ***
+  process at work: 10946 0
+  process at work: 10946 1
+  process at work: 10946 2
+  exiting
+
+
+  pyinstant (h for help) :> s
+
+  pyinstant (h for help) :>
+
+     *** new child spawned ***
+  process at work: 10947 0
+  process at work: 10947 1
+  process at work: 10947 2
+  exiting
+
+
+  pyinstant (h for help) :> s
+
+  pyinstant (h for help) :>
+
+     *** new child spawned ***
+  process at work: 10948 0
+  process at work: 10948 1
+  process at work: 10948 2
+  exiting
+
+
+  pyinstant (h for help) :> q
+  killing old processes: [10948]
+  shutting down session
 
 
 
