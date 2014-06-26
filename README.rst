@@ -103,8 +103,6 @@ When you call it::
 
   pyinstant (h for help) :> s
 
-  pyinstant (h for help) :>
-
      *** new child spawned ***
   process at work: 10946 0
   process at work: 10946 1
@@ -114,8 +112,6 @@ When you call it::
 
   pyinstant (h for help) :> s
 
-  pyinstant (h for help) :>
-
      *** new child spawned ***
   process at work: 10947 0
   process at work: 10947 1
@@ -124,8 +120,6 @@ When you call it::
 
 
   pyinstant (h for help) :> s
-
-  pyinstant (h for help) :>
 
      *** new child spawned ***
   process at work: 10948 0
@@ -154,6 +148,8 @@ When you call it::
 (Step 4) Start a new child in your old session.
 The changes will be dynamically reloaded.
 ::
+
+  pyinstant (h for help) :> s
 
      *** new child spawned ***
   my changed line
