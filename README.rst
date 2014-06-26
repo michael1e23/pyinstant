@@ -134,6 +134,38 @@ When you call it::
   exiting
 
 
+(Step 3) Modify your script, but don't leave your session.
+::
+
+  import pyinstant
+  if pyinstant.is_host:
+      import time,os
+      print('slow initialization')
+      time.sleep(3)
+
+  pyinstant.run()
+
+  for i in range(3):
+      print('my changed line')        # the changed line
+      time.sleep(1)
+  print('exiting')
+
+
+(Step 4) Start a new child in your old session.
+The changes will be dynamically reloaded.
+::
+
+     *** new child spawned ***
+  my changed line
+  my changed line
+  my changed line
+  exiting
+
+
+
+
+(Step 5) Quit the session::
+
   pyinstant (h for help) :> q
   killing old processes: [10948]
   shutting down session
