@@ -8,6 +8,7 @@ import inspect
 import signal
 import time
 import logging
+import sys
 #from pprint import pprint
 
 
@@ -23,9 +24,10 @@ class Launcher(object):
         help_string = """
     s : start new process (kills already started ones)
     k : kill started processes
+    r : restart whole session
+    q : quit
     v : toggle verbosity
     h : show this help string
-    q : quit
     d : (experimental) debug new process
         kills already started ones
         currently only wingide is supported
@@ -113,12 +115,34 @@ class Launcher(object):
                 logging.debug( 'spawning new child' )
                 self.launch_child( _level=_level+1 )
 
+
+            elif 'restart'.startswith(com):
+                logging.debug('killing old processes')
+                self.kill()
+                logging.debug( 'spawning new child' )
+                self.restart_session( _level=_level+1 )
+
+
+
             elif 'debug'.startswith(com):
                 logging.debug('killing old processes')
                 self.kill()
                 logging.debug('spawning new child in debug mode')
                 self.launch_child( _level=_level+1, debug=True )
 
+
+    def get_caller_stack_record(self,_level):
+        rec = stack[_level+1]
+        return rec
+
+    def restart_session(self,_level):
+        print('   *** RESTARTING SESSION ***')
+        python = sys.executable
+        args   = sys.argv
+        os.execl( python, python, *args )
+
+
+        #os.execl( scriptname, *args )
 
 
     def launch_child(self,_level,debug=False):
@@ -138,7 +162,8 @@ class Launcher(object):
             #for i in range(len(stack)):
             #    print(i,stack[i][1])
 
-            rec = stack[_level+1]
+            rec = self.get_caller_stack_record(_level=_level+1)
+            #rec = stack[_level+1]
             fname = rec[1]
             frame = rec[0]
             globs = frame.f_globals
