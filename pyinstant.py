@@ -132,6 +132,7 @@ class Launcher(object):
 
 
     def get_caller_stack_record(self,_level):
+        stack = inspect.stack()
         rec = stack[_level+1]
         return rec
 
@@ -156,7 +157,7 @@ class Launcher(object):
             if debug:
                 debug_child = True
 
-            stack = inspect.stack()
+
 
             #print('child stack')
             #for i in range(len(stack)):

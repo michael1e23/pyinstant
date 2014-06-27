@@ -97,9 +97,10 @@ When you call it::
 
       s : start new process (kills already started ones)
       k : kill started processes
+      r : restart whole session
+      q : quit
       v : toggle verbosity
       h : show this help string
-      q : quit
       d : (experimental) debug new process
           kills already started ones
           currently only wingide is supported
