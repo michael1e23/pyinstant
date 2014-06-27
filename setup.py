@@ -16,7 +16,6 @@ setup(
     url = "https://github.com/michael1e23/pyinstant",
     download_url = "https://github.com/michael1e23/pyinstant/tarball/master",
 
-    #packages = find_packages(),
     py_modules = ['pyinstant'],
 
     long_description = long_description,
